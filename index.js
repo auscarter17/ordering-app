@@ -1,6 +1,7 @@
 import { menuArray } from '/data.js'
 
 const menu = document.getElementById('menu')
+const cart = document.getElementById('cart')
 
 let currentCart = []
 
@@ -46,16 +47,13 @@ function removeFromCart(itemId) {
   renderCart(currentCart)
 }
 
-// function removeFromCart(itemId) {
-//   for (let i = 0; i < currentCart.length; i++) {
-//     if (currentCart[i].id == itemId) {
-//       currentCart.splice([i], 1)
-//     }
-//     renderCart(currentCart)
-//   }
-// }
-
 function renderCart(arr) {
+  if (arr.length > 0) {
+    cart.classList.remove('hidden')
+  }
+  else {
+    cart.classList.add('hidden')
+  }
   document.getElementById('cart-list').innerHTML = ``
   arr.forEach(function (menuItem) {
     document.getElementById('cart-list').innerHTML += `
@@ -64,6 +62,12 @@ function renderCart(arr) {
       <p class="remove-btn" data-remove="${menuItem.id}">remove</p>
       <h2 class="cart-price" id="cart-price">$${menuItem.price}</h2>
     </div>
-  `
+    `
   })
+  let cartTotal = 0
+  cartTotal = arr.reduce(function (total, currentValue){
+    return total + currentValue.price
+  }, 0)
+  document.getElementById('cart-total-price').innerText = cartTotal
+  console.log(cartTotal)
 }

@@ -89,4 +89,9 @@ header {
   margin: 53px 46px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }

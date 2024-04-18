@@ -15,12 +15,12 @@
   <header></header>
   <section class="menu" id="menu"></section>
 
-  <section class="cart">
+  <section class="cart hidden" id="cart">
     <h2 class="cart-header" id="cart-header">Your order</h2>
     <div id="cart-list"></div>
     <div class="cart-total" id="cart-total">
       <h2>Total Price:</h2>
-      <h2 class="cart-price">$26</h2>
+      <h2 class="cart-price">$<span id="cart-total-price"></span></h2>
     </div>
     <button class="complete-order-btn" id="complete-order-btn">Complete Order</button>
   </section>
