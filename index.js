@@ -2,6 +2,7 @@ import { menuArray } from '/data.js'
 
 const menu = document.getElementById('menu')
 
+let currentCart = []
 
 menuArray.forEach(function(item) {
   menu.innerHTML += `
@@ -14,20 +15,55 @@ menuArray.forEach(function(item) {
             <p>$${item.price}</p>
       </div>
       </div>
-      <button class="add-to-cart-btn" id="add-to-cart-btn">+</button>
+      <button class="add-to-cart-btn" id="add-to-cart-btn" data-cart="${item.id}">+</button>
     </div>
   `
 })
 
-const addToCartBtn = document.getElementById('add-to-cart-btn');
-
-addToCartBtn.addEventListener('click', function(e) {
-  console.log(e.target)
-  console.log('button clicked, yo');
-});
-
-const removeBtn = document.getElementById('remove-btn');
-
-removeBtn.addEventListener('click', function() {
-  console.log('item removed')
+document.addEventListener('click', function(e) {
+  if (e.target.dataset.cart){
+    addToCart(e.target.dataset.cart)
+  }
+  else if (e.target.dataset.remove){
+    removeFromCart(e.target.dataset.remove)
+  }
 })
+
+
+function addToCart(itemId) {
+  const targetCartObj = menuArray.filter(function(targetItem) {
+    return(targetItem.id == itemId)
+  })[0]
+  currentCart.push(targetCartObj)
+  renderCart(currentCart)
+}
+
+function removeFromCart(itemId) {
+  currentCart = currentCart.filter(function (itemToRemove) {
+    return itemToRemove.id != itemId
+  })
+  console.log(currentCart)
+  renderCart(currentCart)
+}
+
+// function removeFromCart(itemId) {
+//   for (let i = 0; i < currentCart.length; i++) {
+//     if (currentCart[i].id == itemId) {
+//       currentCart.splice([i], 1)
+//     }
+//     renderCart(currentCart)
+//   }
+// }
+
+function renderCart(arr) {
+  document.getElementById('cart-list').innerHTML = ``
+  arr.forEach(function (menuItem) {
+    document.getElementById('cart-list').innerHTML += `
+    <div class="cart-item" id="cart-item">
+      <h2>${menuItem.name}</h2>
+      <p class="remove-btn" data-remove="${menuItem.id}">remove</p>
+      <h2 class="cart-price" id="cart-price">$${menuItem.price}</h2>
+    </div>
+  `
+  })
+}
