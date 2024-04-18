@@ -12,18 +12,21 @@
   <title>Document</title>
 </head>
 <body>
-  <header>
+  <header></header>
+  <section class="menu" id="menu"></section>
 
-  </header>
-
-  <section class="item">
-    <div class="item-graphic">🍕</div>
-    <div class="item-info">
-        <h2>Pizza</h2>
-        <p class="desc">pepperoni, mushroom, mozzerella</p>
-        <p>$14</p>
+  <section class="cart">
+    <h2 class="cart-header" id="cart-header">Your order</h2>
+    <div class="cart-item">
+      <h2>Pizza</h2>
+      <p class="remove-btn" id="remove-btn">remove</p>
+      <h2 class="cart-price" id="cart-price">$14</h2>
     </div>
-    <button class="add-to-cart-btn" id="add-to-cart-btn">+</button>
+    <div class="cart-total" id="cart-total">
+      <h2>Total Price:</h2>
+      <h2 class="cart-price">$26</h2>
+    </div>
+    <button class="complete-order-btn" id="complete-order-btn">Complete Order</button>
   </section>
 
   <script src="index.js" type="module"></script>
