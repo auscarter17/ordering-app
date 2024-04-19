@@ -28,6 +28,15 @@ document.addEventListener('click', function(e) {
   else if (e.target.dataset.remove){
     removeFromCart(e.target.dataset.remove)
   }
+  else if (e.target === document.getElementById('complete-order-btn')) {
+    document.getElementById('order-modal').classList.remove('hidden')
+  }
+  else if (e.target === document.getElementById('under-modal')) {
+    document.getElementById('order-modal').classList.add('hidden')
+  }
+  else if (e.target === document.getElementById('submit-payment-button')) {
+    submitOrder()
+  }
 })
 
 
@@ -45,6 +54,11 @@ function removeFromCart(itemId) {
   })
   console.log(currentCart)
   renderCart(currentCart)
+}
+
+function submitOrder() {
+  document.getElementById('order-modal').classList.add('hidden')
+  cart.classList.add('hidden')
 }
 
 function renderCart(arr) {
